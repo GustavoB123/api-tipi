@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aluno;
+use App\Models\Matricula;
+use App\Models\Plano;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -60,6 +62,30 @@ class AlunoController extends Controller
  
         $alunos = $this->aluno->create([
             'nome' => $request-> nome,
+            'data_nascimento' => $request-> data_nascimento,
+            'sexo' => $request-> sexo,
+            'cpf' => $request-> cpf,
+            'rg' => $request-> rg,
+            'endereco' => $request-> endereco,
+            'cidade' => $request-> cidade,
+            'cep' => $request-> cep,
+            'telefone' => $request-> telefone,
+            'email' => $request-> email,
+            'profissao' => $request-> profissao,
+            'estado_civil' => $request-> estado_civil,
+            'altura' => $request-> altura,
+            'peso' => $request-> peso,
+            'tipo_sanguineo' => $request-> tipo_sanguineo,
+            'alergias' => $request-> alergias,
+            'medicamentos_uso' => $request-> medicamentos_uso,
+            'cirurgias_previas' => $request-> cirurgias_previas,
+            'lesoes_previas' => $request-> lesoes_previas,
+            'objetivo' => $request-> objetivo,
+            'frequencia_semanal' => $request-> frequencia_semanal,
+            'horario_preferencial' => $request-> horario_preferencial,
+            'data_matricula' => $request-> data_matricula,
+            'tipo_plano' => $request-> tipo_plano,
+            'status' => $request-> status,
             'foto' => $imagem_url
         ]);
  
@@ -163,5 +189,33 @@ class AlunoController extends Controller
 
         $alunos->delete();
         return response()->json(['msg' => 'O registro foi removido com sucesso'], 200);
+    }
+
+
+    public function getMatricula($idAluno){
+        $matricula = Matricula::where('idAluno', $idAluno)->first();
+
+        if ($matricula === null){
+            return response()->json(['message'=> 'Matrícula não encontrada'],404);
+        }
+
+        return response()->json(['$matricula' => $matricula],200);
+    }
+
+
+    public function getPlano($idAluno){
+        $matricula = Matricula::where('idAluno', $idAluno)->first();
+
+        if (!$matricula) {
+            return response()->json(['message'=> 'Matrícula não encontrada'],404);
+        }
+
+        $plano = Plano::find($matricula->idPlano);
+
+        if (!$plano) {
+            return response()->json(['message'=> 'Plano não encontrado'],404);
+        }
+
+        return response()->json(['$plano' => $plano], 200);
     }
 }

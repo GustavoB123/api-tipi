@@ -2,10 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Matricula;
 use Illuminate\Http\Request;
 
 class MatriculaController extends Controller
 {
+
+
+    public $matricula;
+
+    public function __construct(Matricula $matriculas){
+        $this->matricula = $matriculas;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +22,9 @@ class MatriculaController extends Controller
      */
     public function index()
     {
-        //
+        $matricula = $this->matricula->all();
+
+        return response()->json($matricula, 200);
     }
 
     /**
@@ -24,7 +35,7 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Plano extends Model
 {
     use HasFactory;
+protected $table = 'planos';
+protected $primaryKey = 'idPlano';
+
+public function matriculas()
+{
+    return $this->hasMany(Matricula::class,'idPlano');
+}
 }
