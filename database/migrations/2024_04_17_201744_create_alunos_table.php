@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id('idAluno');
             $table->string('nome', 100);
             $table->date('data_nascimento');
-            $table->enum('sexo', ['masculino, feminino, indefinido']);
+            $table->enum('sexo', ['masculino', 'feminino', 'indefinido']);
             $table->string('cpf', 14)->unique();
             $table->string('rg', 20)->unique();
             $table->string('endereco', 155);
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('telefone', 20);
             $table->string('email', 100);
             $table->string('profissao', 100);
-            $table->enum('estado_civil', ['solteiro, casado, divorciado, viuvo']);
+            $table->enum('estado_civil', ['solteiro', 'casado', 'divorciado', 'viuvo']);
             $table->decimal('altura', 5,2);
             $table->decimal('peso', 5,2);
             $table->string('tipo_sanguineo', 5);

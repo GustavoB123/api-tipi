@@ -910,10 +910,6 @@ class Mock implements MockInterface
                 // noop - there is no hasPrototype method
             }
 
-            if (null === $this->_mockery_parentClass) {
-                $this->_mockery_parentClass = get_parent_class($this);
-            }
-
             return call_user_func_array($this->_mockery_parentClass . '::' . $method, $args);
         }
 

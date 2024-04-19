@@ -24,8 +24,3 @@ Route::get('/', function () {
 Route::get('/cep',[ CepController::class, 'index'])->name('cep');
 
 
-Route::prefix('aluno')->group(function () {
-    Route::get('/{id}/matricula', [AlunoController::class, 'getMatricula']);
-    Route::get('/{id}/plano', [AlunoController::class, 'getPlano']);
-
-});

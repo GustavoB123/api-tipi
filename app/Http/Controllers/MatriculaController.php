@@ -35,6 +35,20 @@ class MatriculaController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate($this->matricula->Regras(), $this->matricula->FeedBack());
+
+       $matricula = $this->matricula->create([
+
+        "dataInicioMatricula"   => $request->dataInicioMatricula,
+        "dataFimMatricula"      => $request->dataFimMatricula,
+        "idAluno"               => $request->idAluno,
+        "idPlano"               => $request->idPlano,
+        "statusMatricula"       => $request->statusMatricula,
+
+       ]);
+
+       return response()->json($matricula,200);
         
     }
 

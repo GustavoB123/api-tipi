@@ -12,6 +12,8 @@ class Matricula extends Model
     protected $table = "matriculas";
     protected $primaryKey = "idMatricula";
 
+    protected $fillable = ["dataInicioMatricula","dataFimMatricula","idAluno","idPlano","statusMatricula"];
+
     public function aluno()
     {
         return $this->belongsTo(Aluno::class,"idAluno");
@@ -20,5 +22,21 @@ class Matricula extends Model
     public function plano()
     {
         return $this->belongsTo(Plano::class,"idPlano");
+    }
+
+    public function Regras(){
+        return [
+            'dataInicioMatricula' => 'required',
+            'dataFimMatricula' => 'required',
+            'idAluno' => 'required',
+            'idPlano' => 'required',
+            'statusMatricula' => 'in:ativo,inativo',
+        ];
+    }
+
+    public function FeedBack(){
+        return [
+            'required' => 'O :attribute é obrigatório.'
+        ];
     }
 }

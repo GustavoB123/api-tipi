@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlunoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('aluno', 'App\Http\Controllers\AlunoController');
 
 Route::apiResource('instrutor', 'App\Http\Controllers\InstrutorController');
+
+Route::apiResource('matricula','App\Http\Controllers\MatriculaController');
+
+Route::prefix('aluno')->group(function () {
+    Route::get('/{idAluno}/matricula', [AlunoController::class, 'getMatricula']);
+    Route::get('/{idPlano}/plano', [AlunoController::class, 'getPlano']);
+
+});

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->datetime('dataFimMatricula');
             $table->unsignedBigInteger('idAluno');
             $table->unsignedBigInteger('idPlano');
-            $table->enum('status', ['ativo', 'inativo']);
+            $table->enum('statusMatricula', ['ativo', 'inativo']);
             $table->foreign('idAluno')->references('idAluno')->on('alunos');
             $table->foreign('idPlano')->references('idPlano')->on('planos');
             $table->timestamps();
